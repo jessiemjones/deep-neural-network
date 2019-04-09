@@ -1,5 +1,6 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import numpy as np
 
 
@@ -42,7 +43,7 @@ print(val_loss, val_acc)
 
 
 #tesnor is a multidemenional array
-# print(x_train[1])
+print(x_train[1])
 
 #to save the model
 model.save('num_reader.model')
@@ -50,9 +51,12 @@ model.save('num_reader.model')
 new_model = tf.keras.models.load_model('num_reader.model')
 #to make a predicion.  It TAKES  A LIST.
 predictions = new_model.predict([x_test])
+# predictions = model.predict([x_test])
 
-# print(predictions)
-plt.imshow(x_test[6])
+
+print(predictions)
+plt.imshow(x_test[4])
+plt.set_cmap('binary')
 plt.show()
-print(np.argmax(predictions[6]))
+print(np.argmax(predictions[4]))
 
