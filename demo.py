@@ -9,7 +9,7 @@ mnist = tf.keras.datasets.mnist
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-#Scaling or normalizing the data.
+#Scaling or normalizing the data.  Pixels have values between 0 and 255.  It's easier to work with the data when it's scaled down to numbers between 0 and 1.  Ie: 254 ---> ~.998 & 1 ---> ~.001 quick maffs :p
 x_train = tf.keras.utils.normalize(x_train, axis=1)
 x_test = tf.keras.utils.normalize(x_test, axis=1)
 
@@ -23,12 +23,12 @@ model.add(tf.keras.layers.Flatten(input_shape=(28,28)))
 model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
 # model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
-#output layer. Has the number of classfications we are doing (10) Use softmax because its good for probability distribution.
+#output layer. Has the number of classfications we are doing (10) Use softmax here because its good for probability distribution.
 model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
 
 
 #Parameters for training the model.
-#Use Adaptive Moment Estimation as a default because it is fast than most other gradient decent optimziers.  Espcially on smaller datasets.  Adam has a very good time effiency.
+#Use Adaptive Moment Estimation as a default because it is fast than most other gradient decent optimziers.  Espcially on smaller datasets.  Adam has a very good time effiency and is a the go-to for optimization algorithms.
 model.compile(optimizer='adam', 
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
@@ -42,7 +42,7 @@ val_loss, val_acc = model.evaluate(x_test, y_test)
 print(val_loss, val_acc)
 
 
-#tesnor is a multidemenional array
+#a tesnor is basically a multidemenional array
 print(x_train[1])
 
 #to save the model
@@ -55,8 +55,8 @@ predictions = new_model.predict([x_test])
 
 
 print(predictions)
-plt.imshow(x_test[4])
-plt.set_cmap('binary')
-plt.show()
-print(np.argmax(predictions[4]))
+# plt.imshow(x_test[4])
+# plt.set_cmap('binary')
+# plt.show()
+# print(np.argmax(predictions[4]))
 

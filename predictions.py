@@ -15,7 +15,7 @@ new_model = tf.keras.models.load_model('num_reader.model')
 predictions = new_model.predict([x_test])
 
 
-print(np.argmax(predictions[2]))
+print(np.argmax(predictions[3]))
 plt.set_cmap('binary')
-plt.imshow(x_test[2])
+plt.imshow(x_test[3])
 plt.show()
